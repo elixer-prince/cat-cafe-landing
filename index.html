@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Catpuccino Café — coffee, chocolate &amp; twelve resident cats</title>
+    <meta
+      name="description"
+      content="A cosy cat café pouring slow-roasted espresso and bean-to-bar chocolate, with twelve resident rescue cats, a purring reading nook and adopt-a-cat Sundays in Camden."
+    />
+    <meta name="theme-color" content="#fbf5ee" />v 
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%238B5E3C'/%3E%3Ctext x='32' y='46' font-size='34' text-anchor='middle'%3E%F0%9F%90%B1%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,300..800;1,6..12,300..700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script>
+      /* Applied before first paint so the theme never flashes. */
+      (function () {
+        var root = document.documentElement;
+        var choice = null;
+        try {
+          choice = window.localStorage.getItem("catpuccino-theme");
+        } catch (error) {
+          choice = null;
+        }
+        var system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        root.classList.add("js");
+        root.setAttribute("data-theme", choice === "dark" || choice === "light" ? choice : system);
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 10h11v3.5A4.5 4.5 0 0 1 11.5 18h-2A4.5 4.5 0 0 1 5 13.5V10Z" />
+              <path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2" />
+              <path d="M8.5 10V6.4L10.5 8l2-1.6V10" />
+            </svg>
+          </span>
+          <span class="brand-text">
+            Catpuccino
+            <small>Coffee · Chocolate · Cats</small>
+          </span>
+        </a>
+
+        <nav class="nav" id="primary-nav" aria-label="Primary">
+          <a href="#cats">Our cats</a>
+          <a href="#menu">Menu</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#visit">Visit</a>
+          <a class="btn btn-primary btn-sm nav-cta" href="#book">Book a table</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4.2" />
+              <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6" />
+            </svg>
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 14.2A8.2 8.2 0 0 1 9.8 4 8.4 8.4 0 1 0 20 14.2Z" />
+            </svg>
+          </button>
+
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+            <span class="bars" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero-inner">
+          <div class="hero-copy" data-reveal>
+            <p class="eyebrow">12 resident rescues · single-origin roasts</p>
+            <h1 id="hero-title">Coffee, chocolate &amp; <em>purring</em> in equal measure.</h1>
+            <p class="lede">
+              Catpuccino is a slow-living café on Camden's Regent Row. We roast in small batches, temper our own
+              bean-to-bar chocolate, and share the room with twelve rescue cats who have very strong opinions about
+              both.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#book">Book a table</a>
+              <a class="btn btn-ghost" href="#cats">Meet the cats</a>
+            </div>
+            <p class="hero-note">Walk-ins welcome · £1 from every drink tops up the rescue fund</p>
+
+            <ul class="hero-stats">
+              <li><strong>12</strong><span>Resident cats</span></li>
+              <li><strong>4.9★</strong><span>1,860 reviews</span></li>
+              <li><strong>100%</strong><span>Rescue supported</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-media" data-reveal>
+            <figure class="hero-card hero-card-main">
+              <img
+                src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=72"
+                srcset="
+                  https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=68   700w,
+                  https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=72 1200w
+                "
+                sizes="(max-width: 900px) 92vw, 46vw"
+                width="1200"
+                height="825"
+                fetchpriority="high"
+                decoding="async"
+                alt="A black and white cat resting its paws on the wooden counter of the café"
+              />
+            </figure>
+
+            <figure class="hero-card hero-card-drink">
+              <img
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=70"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                alt="Three flat whites with heart latte art on a table surrounded by potted plants"
+              />
+            </figure>
+
+            <figure class="hero-card hero-card-pastry">
+              <img
+                src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=70"
+                width="800"
+                height="800"
+                loading="lazy"
+                decoding="async"
+                alt="Freshly baked croissants dusted with flour on a dark slate tray"
+              />
+            </figure>
+
+            <p class="hero-badge"><span class="dot" aria-hidden="true"></span> Open today until 8pm</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="strip" aria-label="What is included at Catpuccino">
+        <div class="container">
+          <ul class="strip-inner">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M6 9c0-3 2.7-5 6-5s6 2 6 5-2.7 5-6 5-6-2-6-5Z" />
+                <path d="M9 13.5 8 20l4-2.2L16 20l-1-6.5" />
+              </svg>
+              Small-batch roastery
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 8h12v5a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8Z" />
+                <path d="M16 9h2.5a2.5 2.5 0 0 1 0 5H16" />
+                <path d="M8 4.5c0 1-1 1-1 2M12 4c0 1-1 1-1 2" />
+              </svg>
+              Bean-to-bar chocolate
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20.5s-7-4.2-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 3.1c0 5.2-7 9.4-7 9.4Z" />
+              </svg>
+              Rescue cats, not props
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+                <path d="M14 4v6h6" />
+              </svg>
+              Quiet-hours reading nook
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="cats" aria-labelledby="cats-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">The residents</p>
+            <h2 id="cats-title">Twelve rescues, and six of them run the place.</h2>
+            <p>
+              Every cat at Catpuccino arrived through Camden Cat Rescue. They set their own schedules, choose their own
+              sofas, and are never woken up for a photo. Here are the six most likely to greet you.
+            </p>
+          </header>
+
+          <ul class="card-grid">
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Marmalade, a ginger Maine Coon, stretched out across a wooden café table"
+                />
+                <p class="cat-role">Head of sunbeams</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Marmalade <span>Maine Coon</span></h3>
+                <p>Claims the window table at 9am sharp and supervises the espresso machine from a safe distance.</p>
+                <ul class="chips">
+                  <li>Window seat</li>
+                  <li>Steam sceptic</li>
+                  <li>7 yrs</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Biscuit, a brown tabby cat, sitting on the pale stone steps of the café"
+                />
+                <p class="cat-role">Chief biscuit officer</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Biscuit <span>Tabby</span></h3>
+                <p>Kneads the dough for our cinnamon knots in spirit, and will trade a slow blink for a crumb.</p>
+                <ul class="chips">
+                  <li>Dough kneader</li>
+                  <li>Slow blinks</li>
+                  <li>5 yrs</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Crema, a golden shaded kitten, reaching up towards the camera"
+                />
+                <p class="cat-role">Trainee barista</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Crema <span>Golden shaded</span></h3>
+                <p>Nine months old and endlessly curious about the milk jug. Naps in the pastry tray when nobody looks.</p>
+                <ul class="chips">
+                  <li>Milk froth fan</li>
+                  <li>Napper</li>
+                  <li>9 mths</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Espresso, a grey Scottish fold cat, wearing round tinted sunglasses"
+                />
+                <p class="cat-role">Too cool for catnip</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Espresso <span>Scottish fold</span></h3>
+                <p>Sits in the darkest corner in tinted shades, judging your drink order. Secretly the softest cat here.</p>
+                <ul class="chips">
+                  <li>Corner booth</li>
+                  <li>Shades on</li>
+                  <li>6 yrs</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1494256997604-768d1f608cac?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Latte, a grey tabby cat, peeking out from under a chunky knitted blanket"
+                />
+                <p class="cat-role">Blanket architect</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Latte <span>Grey tabby</span></h3>
+                <p>Shy for the first ten minutes, then curls up on your coat. Builds forts from the reading-nook throws.</p>
+                <ul class="chips">
+                  <li>Fort builder</li>
+                  <li>Lap warmer</li>
+                  <li>4 yrs</li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="cat-card" data-reveal>
+              <figure>
+                <img
+                  src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=600&q=70"
+                  width="600"
+                  height="800"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Cocoa, a brown tabby cat, lounging on a pale linen sofa"
+                />
+                <p class="cat-role">Resident lap warmer</p>
+              </figure>
+              <div class="cat-body">
+                <h3>Cocoa <span>Tabby</span></h3>
+                <p>A large amount of opinions and warmth. Books herself onto the sofa beside whoever looks coldest.</p>
+                <ul class="chips">
+                  <li>Sofa claimer</li>
+                  <li>Warm hugs</li>
+                  <li>8 yrs</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+
+          <p class="cats-foot">
+            Adopt-a-cat Sunday runs every week, 11am–2pm. <a href="#book">Reserve a slot</a> — four cats have found
+            homes this year.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="menu" aria-labelledby="menu-title">
+        <div class="container">
+          <header class="section-head center" data-reveal>
+            <p class="eyebrow">The menu</p>
+            <h2 id="menu-title">Espresso, single-origin chocolate, and pastry warm from the oven.</h2>
+            <p>
+              We roast on Mondays and temper chocolate on Tuesdays. Every syrup, ganache and biscuit is made in the
+              kitchen behind the counter — no shortcuts, no powders.
+            </p>
+          </header>
+
+          <div class="menu-columns">
+            <article class="menu-board" data-reveal>
+              <img
+                src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=70"
+                width="900"
+                height="506"
+                loading="lazy"
+                decoding="async"
+                alt="Pour-over coffee brewing through a paper filter into a glass carafe"
+              />
+              <div class="menu-board-body">
+                <h3>The coffee bar <span>Roasted Mondays</span></h3>
+                <ul class="menu-items">
+                  <li>
+                    <span class="item">Flat white <small>House blend, 6oz</small></span>
+                    <span class="price">£3.40</span>
+                  </li>
+                  <li>
+                    <span class="item">Cortado <small>Double ristretto, 4oz</small></span>
+                    <span class="price">£3.10</span>
+                  </li>
+                  <li>
+                    <span class="item">Pour-over, Ethiopia Guji <small>Tasting notes: apricot, cocoa nib</small></span>
+                    <span class="price">£4.20</span>
+                  </li>
+                  <li>
+                    <span class="item">Mocha <small>70% house ganache, whipped cream</small></span>
+                    <span class="price">£4.10</span>
+                  </li>
+                  <li>
+                    <span class="item">Maple iced latte <small>Cold brew, oat or dairy</small></span>
+                    <span class="price">£4.30</span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="menu-board" data-reveal>
+              <img
+                src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?auto=format&fit=crop&w=900&q=70"
+                width="900"
+                height="506"
+                loading="lazy"
+                decoding="async"
+                alt="An open box of hand-made chocolate truffles and pralines"
+              />
+              <div class="menu-board-body">
+                <h3>The chocolate counter <span>Bean to bar</span></h3>
+                <ul class="menu-items">
+                  <li>
+                    <span class="item">70% drinking chocolate <small>Single-origin Peru, steamed milk</small></span>
+                    <span class="price">£4.00</span>
+                  </li>
+                  <li>
+                    <span class="item">Milk &amp; heather honey <small>Comfort in a mug</small></span>
+                    <span class="price">£3.80</span>
+                  </li>
+                  <li>
+                    <span class="item">Dark chocolate &amp; orange <small>House candied peel</small></span>
+                    <span class="price">£4.10</span>
+                  </li>
+                  <li>
+                    <span class="item">Affogato <small>Vanilla gelato, double espresso</small></span>
+                    <span class="price">£4.50</span>
+                  </li>
+                  <li>
+                    <span class="item">Truffle flight <small>Three hand-rolled truffles</small></span>
+                    <span class="price">£6.50</span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+
+          <p class="menu-note">
+            Oat, soy and lactose-free milk at no extra charge · Cats are on a strict no-caffeine, no-chocolate diet,
+            however hard they stare.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="gallery" aria-labelledby="gallery-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">Inside the café</p>
+            <h2 id="gallery-title">Steam, snoring and the last of the afternoon light.</h2>
+            <p>Snapshots from the week. No flash, no posing, and nobody woken up for a picture.</p>
+          </header>
+
+          <div class="gallery-grid">
+            <figure class="g-wide">
+              <img
+                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=70"
+                width="1200"
+                height="675"
+                loading="lazy"
+                decoding="async"
+                alt="The main room of the café, filled with plants, wooden tables and soft afternoon light"
+              />
+              <figcaption>The main room, 8am</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=70"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                alt="Milk being poured into a cup of espresso to finish the latte art"
+              />
+              <figcaption>Flat white no. 4,000</figcaption>
+            </figure>
+
+            <figure class="g-tall">
+              <img
+                src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&q=70"
+                width="700"
+                height="1000"
+                loading="lazy"
+                decoding="async"
+                alt="Toffee, an orange tabby cat, asleep on the warm floorboards"
+              />
+              <figcaption>Toffee, mid-nap</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=70"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                alt="A dense close-up of freshly roasted coffee beans"
+              />
+              <figcaption>Monday roast</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=70"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                alt="Chopped chunks of dark chocolate scattered on a marble surface"
+              />
+              <figcaption>Tempering day</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=70"
+                width="600"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                alt="Four people touching coffee cups together over a table"
+              />
+              <figcaption>Table for four</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="why" aria-labelledby="why-title">
+        <div class="container">
+          <header class="section-head center" data-reveal>
+            <p class="eyebrow">Why Catpuccino</p>
+            <h2 id="why-title">Designed for slow afternoons, not for queues.</h2>
+            <p>We keep the room quiet, the tables generous and the cats in charge.</p>
+          </header>
+
+          <div class="perks">
+            <article class="perk" data-reveal>
+              <p class="perk-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7.5V12l3 2" />
+                </svg>
+              </p>
+              <h3>Ninety-minute tables</h3>
+              <p>Every booking comes with time to spare. Nobody is asked to hurry their espresso or their cat cuddle.</p>
+            </article>
+
+            <article class="perk" data-reveal>
+              <p class="perk-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3.5c-4 3-6 6.2-6 9.3a6 6 0 0 0 12 0c0-3.1-2-6.3-6-9.3Z" />
+                  <path d="M12 17.5a3 3 0 0 0 3-3" />
+                </svg>
+              </p>
+              <h3>Roasted, never rushed</h3>
+              <p>Small batches roasted on Mondays, rested for six days, then dialled in twice a day on the bar.</p>
+            </article>
+
+            <article class="perk" data-reveal>
+              <p class="perk-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20.5s-7-4.2-7-9.4A4.1 4.1 0 0 1 12 8a4.1 4.1 0 0 1 7 3.1c0 5.2-7 9.4-7 9.4Z" />
+                </svg>
+              </p>
+              <h3>Adopt, don't shop</h3>
+              <p>All twelve residents are rescue cats. Our adoption Sundays have rehomed 46 cats since 2021.</p>
+            </article>
+
+            <article class="perk" data-reveal>
+              <p class="perk-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+                  <path d="M14 4v6h6" />
+                </svg>
+              </p>
+              <h3>Quiet hours daily</h3>
+              <p>3–5pm is screen-free and speaker-free, with low lighting and a shelf of second-hand paperbacks.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="reviews" aria-labelledby="reviews-title">
+        <div class="container">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow">Kind words</p>
+            <h2 id="reviews-title">4.9 stars from 1,860 cups of coffee.</h2>
+          </header>
+
+          <div class="quotes">
+            <figure class="quote" data-reveal>
+              <p class="quote-stars" aria-label="Rated 5 out of 5">★★★★★</p>
+              <blockquote>
+                <p>"The mocha is the best I have had outside of Brussels, and Marmalade slept on my scarf for an hour."</p>
+              </blockquote>
+              <figcaption>
+                <span class="quote-avatar" aria-hidden="true">PR</span>
+                Priya R. · regular since 2022
+              </figcaption>
+            </figure>
+
+            <figure class="quote" data-reveal>
+              <p class="quote-stars" aria-label="Rated 5 out of 5">★★★★★</p>
+              <blockquote>
+                <p>"Booked a quiet-hours table to finish a manuscript. Three flat whites, one cat on my laptop, deadline met."</p>
+              </blockquote>
+              <figcaption>
+                <span class="quote-avatar" aria-hidden="true">DM</span>
+                Daniel M. · writes here weekly
+              </figcaption>
+            </figure>
+
+            <figure class="quote" data-reveal>
+              <p class="quote-stars" aria-label="Rated 4 out of 5">★★★★☆</p>
+              <blockquote>
+                <p>"We adopted Toffee at an adoption Sunday. He now snores on our radiator and judges our coffee."</p>
+              </blockquote>
+              <figcaption>
+                <span class="quote-avatar" aria-hidden="true">SA</span>
+                Sam &amp; Ada · adopted Toffee
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="book" aria-labelledby="book-title">
+        <div class="container book-inner">
+          <div class="book-copy" id="visit" data-reveal>
+            <p class="eyebrow">Visit us</p>
+            <h2 id="book-title">Book a table, meet a cat, stay a while.</h2>
+            <p>
+              Tables are held for fifteen minutes. Every booking includes a ninety-minute slot, a drink of your choice
+              and all the cat hair you can carry home.
+            </p>
+
+            <div class="hours">
+              <h3>Opening hours</h3>
+              <ul>
+                <li>Monday – Thursday <span>8am – 8pm</span></li>
+                <li>Friday &amp; Saturday <span>8am – 10pm</span></li>
+                <li>Sunday, adoption day <span>9am – 6pm</span></li>
+                <li>Quiet hours, daily <span>3pm – 5pm</span></li>
+              </ul>
+            </div>
+
+            <p class="contact-list">
+              <span><strong>Find us</strong> — 14 Regent Row, Camden, London NW1</span>
+              <span><strong>Call</strong> — <a href="tel:+442071234567">020 7123 4567</a></span>
+              <span><strong>Email</strong> — <a href="mailto:hello@catpuccino.cafe">hello@catpuccino.cafe</a></span>
+            </p>
+          </div>
+
+          <form class="form-card" id="booking-form" data-reveal>
+            <h3>Reserve your table</h3>
+            <p>Pick a slot and tell us who you would like to sit with. We confirm by email within the hour.</p>
+
+            <div class="form-grid">
+              <div class="field field-wide">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required placeholder="Ada Lovelace" />
+              </div>
+
+              <div class="field field-wide">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+              </div>
+
+              <div class="field">
+                <label for="date">Date</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+
+              <div class="field">
+                <label for="time">Time</label>
+                <select id="time" name="time" required>
+                  <option value="9am">9:00am</option>
+                  <option value="11am" selected>11:00am</option>
+                  <option value="1pm">1:00pm</option>
+                  <option value="3pm">3:00pm · quiet hours</option>
+                  <option value="5pm">5:00pm</option>
+                  <option value="7pm">7:00pm</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="guests">Guests</label>
+                <select id="guests" name="guests" required>
+                  <option value="1 guest">1 guest</option>
+                  <option value="2 guests" selected>2 guests</option>
+                  <option value="3 guests">3 guests</option>
+                  <option value="4 guests">4 guests</option>
+                  <option value="5 guests">5 guests</option>
+                  <option value="6 guests">6 guests</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="cat">Sit with</label>
+                <select id="cat" name="cat" required>
+                  <option value="Marmalade">Marmalade — head of sunbeams</option>
+                  <option value="Biscuit">Biscuit — chief biscuit officer</option>
+                  <option value="Crema">Crema — trainee barista</option>
+                  <option value="Espresso">Espresso — too cool for catnip</option>
+                  <option value="Latte">Latte — blanket architect</option>
+                  <option value="Cocoa">Cocoa — resident lap warmer</option>
+                  <option value="any cat who is awake" selected>Surprise me — any cat who is awake</option>
+                </select>
+              </div>
+
+              <div class="field field-wide">
+                <label for="message">Anything we should know?</label>
+                <textarea id="message" name="message" placeholder="Birthday, allergies, laptop and a plug socket…"></textarea>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Request booking</button>
+              <p class="form-note">No deposit needed · free to cancel up to two hours before.</p>
+            </div>
+
+            <p class="form-status" id="form-status" role="status" tabindex="-1"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 10h11v3.5A4.5 4.5 0 0 1 11.5 18h-2A4.5 4.5 0 0 1 5 13.5V10Z" />
+                <path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2" />
+                <path d="M8.5 10V6.4L10.5 8l2-1.6V10" />
+              </svg>
+            </span>
+            <span class="brand-text">
+              Catpuccino
+              <small>Coffee · Chocolate · Cats</small>
+            </span>
+          </a>
+
+          <p>Slow coffee, single-origin chocolate and twelve rescue cats on Camden's Regent Row.</p>
+
+          <ul class="footer-social">
+            <li>
+              <a href="#top" aria-label="Catpuccino on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+                  <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M16.8 7.2h.01" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#top" aria-label="Catpuccino on Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14.5 8.5h2.2V5.6h-2.4c-2 0-3.3 1.3-3.3 3.4v1.6H9v2.8h2v6.1h2.9v-6.1h2.2l.4-2.8h-2.6V9.4c0-.6.3-.9 1-.9Z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="#top" aria-label="Catpuccino on TikTok">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M14 4v9.6a3.6 3.6 0 1 1-3.2-3.6" />
+                  <path d="M14 5.2A4.6 4.6 0 0 0 18.4 9" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <nav class="footer-col" aria-labelledby="footer-explore">
+          <h3 id="footer-explore">Explore</h3>
+          <ul>
+            <li><a href="#cats">Our cats</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-col" aria-labelledby="footer-visit">
+          <h3 id="footer-visit">Visit</h3>
+          <ul>
+            <li><a href="#book">Book a table</a></li>
+            <li><a href="#book">Adopt-a-cat Sunday</a></li>
+            <li><a href="#why">Quiet hours</a></li>
+            <li><a href="#top">Back to top</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col footer-news">
+          <h3>Cat mail, monthly</h3>
+          <p>New roasts, adoption news and the occasional photo of Espresso in his shades. One email a month, no more.</p>
+
+          <form class="news-form" id="newsletter-form">
+            <label class="visually-hidden" for="newsletter-email">Email address</label>
+            <input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            />
+            <button class="btn btn-primary btn-sm" type="submit">Join</button>
+          </form>
+
+          <p class="form-note news-status" id="newsletter-status" role="status"></p>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>
+          © <span id="year">2026</span> Catpuccino Café · 14 Regent Row, Camden · Photography from
+          <a href="https://unsplash.com" rel="noopener">Unsplash</a>
+        </p>
+        <ul>
+          <li><a href="#top">Privacy</a></li>
+          <li><a href="#top">Accessibility</a></li>
+          <li><a href="#top">Allergens</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
