@@ -21,7 +21,7 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | H | Booking request form | Already built | in-progress |
 | I | Newsletter signup | Already built | in-progress |
 | 1 | Coding standards & tooling | Foundation | planned |
-| 2 | Booking request delivery | Slice 1 | planned |
+| 2 | Booking request delivery | Slice 1 | in-progress |
 | 3 | Newsletter signup delivery | Slice 1 | planned |
 
 ## Already built
@@ -64,10 +64,15 @@ Capture the conventions this static page already follows and add one check that 
 
 ## Slice 1: forms that really send
 
-### 2. Booking request delivery · needs a decision
-Booking is the whole point of the page, and today the form only pretends to work. Send each request to the café through the chosen form service, and let the guest see the truth about what happened.
+### 2. Booking request delivery · in-progress
+Booking is the whole point of the page, and today the form only pretends to work. Send each request to the café through the chosen form service, and let the guest see the truth about what happened. spec [0001](../specs/0001-deliver-booking-requests-through-web3forms.md)
 **Done when:** a submitted request really arrives at the café's chosen destination with the guest's details, the guest reads a success message only after a real send, a failed send shows an honest message with a way to retry, and the form states what those details are used for.
-- [ ] Design it (spec): `/architect booking request delivery`
+- [x] Design it (spec): `/architect booking request delivery`
+- [ ] Build it: `/develop booking request delivery`
+  - [ ] The form posts to Web3Forms from its own markup, with the payload made honest (AC-5, AC-6, AC-10)
+  - [ ] The script sends for real and reports the three honest states, keeping the guest's details on failure (AC-1, AC-2, AC-3, AC-4, AC-7, AC-11)
+  - [ ] Bot trap, the purpose line, and the three states styled from tokens (AC-1, AC-2, AC-3, AC-4, AC-8, AC-9)
+- [ ] Verify it: `/check verify booking request delivery`
 
 ### 3. Newsletter signup delivery · needs a decision
 The monthly Cat mail signup should really add a subscriber, with the same honesty about the outcome.
@@ -84,6 +89,7 @@ Out of scope for the current build pass, kept so the plan stays honest.
 - **Analytics**: see which sections and which booking path actually convert
 - **Menu & cats as content**: let the café change the menu and the residents without editing HTML · needs a decision
 - **Adoption Sunday applications**: a second form for adoption enquiries · needs a decision
+- **Stronger spam cover**: if the honeypot and Web3Forms' own filtering prove thin once real requests flow, a capture challenge (or a paid spam tier) is the next step · needs a decision · from spec 0001
 
 ## Legend
 
