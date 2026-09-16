@@ -649,9 +649,19 @@
             </p>
           </div>
 
-          <form class="form-card" id="booking-form" data-reveal>
+          <form
+            class="form-card"
+            id="booking-form"
+            action="https://api.web3forms.com/submit"
+            method="post"
+            data-reveal
+          >
             <h3>Reserve your table</h3>
             <p>Pick a slot and tell us who you would like to sit with. We confirm by email within the hour.</p>
+
+            <!-- Public Web3Forms access key. The recipient inbox is configured in Web3Forms. -->
+            <input type="hidden" name="access_key" value="11785b90-f00f-4088-a211-d8ef2a63c367" />
+            <input type="hidden" name="subject" value="New booking request from the Catpuccino website" />
 
             <div class="form-grid">
               <div class="field field-wide">
@@ -672,12 +682,12 @@
               <div class="field">
                 <label for="time">Time</label>
                 <select id="time" name="time" required>
-                  <option value="9am">9:00am</option>
-                  <option value="11am" selected>11:00am</option>
-                  <option value="1pm">1:00pm</option>
-                  <option value="3pm">3:00pm · quiet hours</option>
-                  <option value="5pm">5:00pm</option>
-                  <option value="7pm">7:00pm</option>
+                  <option value="9:00am">9:00am</option>
+                  <option value="11:00am" selected>11:00am</option>
+                  <option value="1:00pm">1:00pm</option>
+                  <option value="3:00pm · quiet hours">3:00pm · quiet hours</option>
+                  <option value="5:00pm">5:00pm</option>
+                  <option value="7:00pm">7:00pm</option>
                 </select>
               </div>
 
@@ -708,16 +718,37 @@
 
               <div class="field field-wide">
                 <label for="message">Anything we should know?</label>
-                <textarea id="message" name="message" placeholder="Birthday, allergies, laptop and a plug socket…"></textarea>
+                <textarea
+                  id="message"
+                  name="message"
+                  maxlength="500"
+                  placeholder="Birthday, a window seat, laptop and a plug socket…"
+                ></textarea>
               </div>
             </div>
+
+            <!-- Bot trap. Hidden from sight, from the keyboard and from assistive tech. -->
+            <input
+              class="form-trap"
+              type="checkbox"
+              id="botcheck"
+              name="botcheck"
+              tabindex="-1"
+              aria-hidden="true"
+              autocomplete="off"
+            />
 
             <div class="form-actions">
               <button class="btn btn-primary" type="submit">Request booking</button>
               <p class="form-note">No deposit needed · free to cancel up to two hours before.</p>
             </div>
 
-            <p class="form-status" id="form-status" role="status" tabindex="-1"></p>
+            <p class="form-purpose">
+              We use these details only to arrange your booking. They reach the café's booking inbox through
+              Web3Forms.
+            </p>
+
+            <div class="form-status" id="form-status" role="status" tabindex="-1"></div>
           </form>
         </div>
       </section>

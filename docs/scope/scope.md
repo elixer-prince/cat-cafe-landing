@@ -65,14 +65,14 @@ Capture the conventions this static page already follows and add one check that 
 ## Slice 1: forms that really send
 
 ### 2. Booking request delivery · in-progress
-Booking is the whole point of the page, and today the form only pretends to work. Send each request to the café through the chosen form service, and let the guest see the truth about what happened. spec [0001](../specs/0001-deliver-booking-requests-through-web3forms.md)
+Booking is the whole point of the page, and today the form only pretends to work. Send each request to the café through the chosen form service, and let the guest see the truth about what happened. spec [0001](../specs/0001-deliver-booking-requests-through-web3forms.md) · code in `index.html`, `script.js`, `styles.css`
 **Done when:** a submitted request really arrives at the café's chosen destination with the guest's details, the guest reads a success message only after a real send, a failed send shows an honest message with a way to retry, and the form states what those details are used for.
 - [x] Design it (spec): `/architect booking request delivery`
-- [ ] Build it: `/develop booking request delivery`
-  - [ ] The form posts to Web3Forms from its own markup, with the payload made honest (AC-5, AC-6, AC-10)
-  - [ ] The script sends for real and reports the three honest states, keeping the guest's details on failure (AC-1, AC-2, AC-3, AC-4, AC-7, AC-11)
-  - [ ] Bot trap, the purpose line, and the three states styled from tokens (AC-1, AC-2, AC-3, AC-4, AC-8, AC-9)
-- [ ] Verify it: `/check verify booking request delivery`
+- [x] Build it: `/develop booking request delivery`
+  - [x] The form posts to Web3Forms from its own markup, with the payload made honest (AC-5, AC-6, AC-10)
+    - [x] The script sends for real and reports the three honest states, keeping the guest's details on failure (AC-1, AC-2, AC-3, AC-4, AC-7, AC-11)
+    - [x] Bot trap, the purpose line, and the three states styled from tokens (AC-1, AC-2, AC-3, AC-4, AC-8, AC-9)
+- [x] Verify it: `/check verify booking request delivery` — 22/22 local checks pass against the real `index.html`, `script.js` and `styles.css` (evidence in spec §Verification). The live end-to-end send to the Web3Forms service is blocked in this environment (no browser here to do a JavaScript-off POST, outbound HTTPS to `api.web3forms.com` is unreachable, and the access key is still the placeholder), so the Done when condition "really arrives" stays pending the café's key paste — exactly the Follow-up the spec already calls out.
 
 ### 3. Newsletter signup delivery · needs a decision
 The monthly Cat mail signup should really add a subscriber, with the same honesty about the outcome.

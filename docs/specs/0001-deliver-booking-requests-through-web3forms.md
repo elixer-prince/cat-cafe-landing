@@ -1,7 +1,7 @@
 # 0001. Deliver booking requests through Web3Forms
 
 **Date**: 2026-09-16
-**Status**: Proposed
+**Status**: In Progress
 
 ## Summary
 
@@ -245,6 +245,26 @@ Ordered for a Tracer Bullet: the first task proves the thinnest possible thread 
 - [ ] The deferred privacy notice item in `docs/scope/scope.md` must name Web3Forms as a processor of guest details, alongside the web fonts and Unsplash photos already listed there
 - [ ] Watch the first weeks of real requests for bot traffic. If the trap and the service's filtering prove thin, the next step is a capture challenge, which adds a third party script and needs its own decision
 - [ ] Feature 3 in the scope, newsletter signup delivery, is the same shape of problem. Reuse this decision rather than choosing a second service without a reason
+
+## Verification (2026-09-16)
+
+`/check verify booking request delivery` ran a Node harness that loads the **real** `script.js` against a stubbed DOM and a controllable `fetch`, then drives the actual booking submit handler. It also asserts the markup and stylesheet surfaces directly from `index.html` and `styles.css`. Evidence saved to the scratch log `proceed-while-running-1789584926074` (22/22 checks passed).
+
+- [x] Script loads and wires the submit handler without throwing
+- [x] **AC-1** — exactly one request fires to the form's own `action`, the confirmation (`Purrfect, Ada…`) renders only after an HTTP 200 whose body reports success, and echoes guests, time, cat and a readable date; the form clears
+- [x] **AC-2** — 400, 429, 500, an unparseable 200, a network rejection, and the 15s `AbortController` abort all land in the correct failure bucket
+- [x] **AC-3** — 400 → "did not reach us"; 429 → "taking a lot of requests"; timeout/network/500 → "could not confirm whether that reached us" (not mixed up)
+- [x] **AC-4** — every failure keeps the typed values, re-enables the control, and offers `020 7123 4567` plus `hello@catpuccino.cafe`
+- [x] **AC-6** — payload keys are exactly `access_key, name, email, date, time, guests, cat, message, subject` (9), no `redirect`, the unchecked trap is omitted like a native post, `email` is the reply-to address
+- [x] **AC-7** — in flight the button reads `Sending…`, carries `aria-busy="true"`, is not `disabled`, stays focusable; a second press in flight sends nothing and leaves values untouched
+- [x] **AC-8** — a checked `botcheck` trap sends nothing and prints no message
+- [x] **AC-10** — `date.min` is today using the device's local date parts (not UTC)
+- [x] **AC-11** — nothing is written to `localStorage` on success
+- [x] **AC-5 / AC-9** — markup surfaces confirmed: `action="https://api.web3forms.com/submit"`, `method="post"`, hidden `access_key` and `subject`, no `redirect`, the `botcheck` trap, and the `form-purpose` line stating the details reach the café's inbox through Web3Forms
+- [x] CSS — `--alert`/`--alert-soft` defined for light and mapped under `html[data-theme="dark"]`; `.form-trap` is `display:none`; `prefers-reduced-motion` kills the `status-pulse`
+
+**Blocked (externally dependent, not a code gap):**
+- A live no-script POST of the form to `https://api.web3forms.com/submit` could not be observed: there is no browser in this sandbox, outbound HTTPS to the service was unreachable, and the `access_key` is still the placeholder. Proving the guest "really arrives" at the service is the café's pending step (paste the key, then one live POST — see the Follow-up).
 
 ## References
 

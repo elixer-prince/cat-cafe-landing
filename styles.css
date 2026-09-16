@@ -31,6 +31,8 @@
   --dk-shadow-soft: 0 10px 24px -16px rgba(0, 0, 0, 0.75);
   --dk-ring: rgba(221, 169, 111, 0.55);
   --dk-glow: rgba(221, 169, 111, 0.22);
+  --dk-alert: #f0a08c;
+  --dk-alert-soft: #4a2318;
 
   /* light palette in use */
   --bg: #fbf5ee;
@@ -49,6 +51,10 @@
   --shadow-soft: 0 10px 24px -18px rgba(58, 35, 22, 0.4);
   --ring: rgba(139, 94, 60, 0.45);
   --glow: rgba(197, 141, 82, 0.28);
+
+  /* alert pair, for a request that could not be delivered */
+  --alert: #9a3524;
+  --alert-soft: #f7e0d8;
 
   /* shape + rhythm */
   --maxw: 1180px;
@@ -82,6 +88,8 @@ html[data-theme="dark"] {
   --shadow-soft: var(--dk-shadow-soft);
   --ring: var(--dk-ring);
   --glow: var(--dk-glow);
+  --alert: var(--dk-alert);
+  --alert-soft: var(--dk-alert-soft);
 }
 
 /* dark theme — no-JS fallback that follows the operating system */
@@ -104,6 +112,8 @@ html[data-theme="dark"] {
     --shadow-soft: var(--dk-shadow-soft);
     --ring: var(--dk-ring);
     --glow: var(--dk-glow);
+    --alert: var(--dk-alert);
+    --alert-soft: var(--dk-alert-soft);
   }
 }
 
@@ -1233,6 +1243,11 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   grid-column: 1 / -1;
 }
 
+/* Bot trap. Never seen, never focused, never announced. */
+.form-trap {
+  display: none;
+}
+
 .field label {
   font-size: 0.79rem;
   font-weight: 700;
@@ -1284,18 +1299,95 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   color: var(--text-soft);
 }
 
+/* What the details are for, and where they go. */
+.form-card > .form-purpose {
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
 .form-status {
   margin-top: 1.2rem;
   padding: 0.9rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  background: var(--surface-2);
   font-size: 0.92rem;
   font-weight: 600;
 }
 
 .form-status:empty {
   display: none;
+}
+
+/* In flight: the request is out and the page is waiting for a reply. */
+.form-status.is-sending {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text-soft);
+}
+
+.form-status.is-sending::before {
+  content: "";
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  animation: status-pulse 1.1s ease-in-out infinite;
+}
+
+/* Sent: the service confirmed the request arrived. */
+.form-status.is-sent {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--text);
+}
+
+/* Busy: the service is rate limiting, so the request did not get through. */
+.form-status.is-busy {
+  border-color: color-mix(in srgb, var(--caramel) 55%, var(--border));
+  background: color-mix(in srgb, var(--caramel) 16%, transparent);
+}
+
+/* Error: the request did not arrive, or the page could not confirm it. */
+.form-status.is-error {
+  border-color: color-mix(in srgb, var(--alert) 42%, var(--border));
+  background: var(--alert-soft);
+  color: var(--alert);
+}
+
+.form-status a {
+  font-weight: 700;
+}
+
+.form-status a:hover {
+  color: inherit;
+}
+
+.form-status-text {
+  font-weight: 600;
+}
+
+.form-status-contact {
+  margin-top: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1573,6 +1665,12 @@ html.js [data-reveal].is-visible {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* the waiting dot reads as a plain dot, without the pulse */
+  .form-status.is-sending::before {
+    opacity: 1;
+    transform: none;
   }
 
   *,
