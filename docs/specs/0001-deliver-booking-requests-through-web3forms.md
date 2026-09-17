@@ -1,7 +1,7 @@
 # 0001. Deliver booking requests through Web3Forms
 
 **Date**: 2026-09-16
-**Status**: In Progress
+**Status**: Done (2026-09-16: the café's key is pasted and a live send is confirmed)
 
 ## Summary
 
@@ -240,7 +240,7 @@ Ordered for a Tracer Bullet: the first task proves the thinnest possible thread 
 
 ## Follow-up
 
-- [ ] The café opens a free Web3Forms account and the access key is pasted into the marked value in `index.html`. Until then the form can only fail honestly
+- [x] The café opens a free Web3Forms account and the access key is pasted into the marked value in `index.html`. Until then the form can only fail honestly — resolved 2026-09-16: the real key is in `index.html` and the café confirmed a live send arrives
 - [ ] Confirm the current free tier monthly limit on Web3Forms' own pricing page when the account is created (that page refused an automated fetch during this design)
 - [ ] The deferred privacy notice item in `docs/scope/scope.md` must name Web3Forms as a processor of guest details, alongside the web fonts and Unsplash photos already listed there
 - [ ] Watch the first weeks of real requests for bot traffic. If the trap and the service's filtering prove thin, the next step is a capture challenge, which adds a third party script and needs its own decision
@@ -265,6 +265,8 @@ Ordered for a Tracer Bullet: the first task proves the thinnest possible thread 
 
 **Blocked (externally dependent, not a code gap):**
 - A live no-script POST of the form to `https://api.web3forms.com/submit` could not be observed: there is no browser in this sandbox, outbound HTTPS to the service was unreachable, and the `access_key` is still the placeholder. Proving the guest "really arrives" at the service is the café's pending step (paste the key, then one live POST — see the Follow-up).
+
+**Resolved 2026-09-16:** the placeholder is gone — the café's real access key sits in the marked value in `index.html` — and the café confirmed a live send reaches the café's inbox. The last Done when condition holds; the remaining Follow-up items stand on their own.
 
 ## References
 

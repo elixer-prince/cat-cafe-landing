@@ -587,7 +587,9 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -18% -10% 15%;
+  /* horizontal insets stay at 0: the hero is full bleed, so anything past its
+     left or right edge would poke past the viewport and add horizontal scroll */
+  inset: -18% 0 15%;
   pointer-events: none;
   background:
     radial-gradient(45% 55% at 16% 32%, var(--glow), transparent 68%),

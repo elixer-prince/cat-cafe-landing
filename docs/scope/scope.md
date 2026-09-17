@@ -18,10 +18,10 @@ _These are recommendations to keep your build orderly, not requirements. Skip an
 | E | Why Catpuccino & guest reviews | Already built | existing |
 | F | Visit details, hours & contact | Already built | existing |
 | G | Page interactions | Already built | existing |
-| H | Booking request form | Already built | in-progress |
+| H | Booking request form | Already built | done |
 | I | Newsletter signup | Already built | in-progress |
 | 1 | Coding standards & tooling | Foundation | planned |
-| 2 | Booking request delivery | Slice 1 | in-progress |
+| 2 | Booking request delivery | Slice 1 | done |
 | 3 | Newsletter signup delivery | Slice 1 | planned |
 
 ## Already built
@@ -49,8 +49,8 @@ Opening hours, quiet hours, the Camden address, and the phone and email links. c
 ### G. Page interactions · existing
 Theme toggle with a saved choice that follows the operating system until the visitor picks a side, sticky header shadow, mobile navigation, reveal on scroll, and the footer year. Every one of them degrades gracefully without JavaScript. code in `script.js`
 
-### H. Booking request form · in-progress
-Collects name, email, date, time, guests, which cat to sit with and a free text note, and the page promises a confirmation by email within the hour. Nothing is sent anywhere: the submit handler prints a friendly message and clears the form. code in `index.html`, `script.js`
+### H. Booking request form · done
+Collects name, email, date, time, guests, which cat to sit with and a free text note, and the page promises a confirmation by email within the hour. Finished by feature 2: the request really posts to Web3Forms from the form's own markup, and the page reports success, failure and retry honestly. code in `index.html`, `script.js`, `styles.css`
 
 ### I. Newsletter signup · in-progress
 The footer Cat mail signup validates an address and prints a cheerful confirmation. No address is stored or sent anywhere. code in `index.html`, `script.js`
@@ -58,21 +58,21 @@ The footer Cat mail signup validates an address and prints a cheerful confirmati
 ## Foundation
 
 ### 1. Coding standards & tooling
-Capture the conventions this static page already follows and add one check that keeps them true, so later features have a single place to look for house rules. There is no root `AGENTS.md` in the repo yet.
+Capture the conventions this static page already follows and add one check that keeps them true, so later features have a single place to look for house rules. A root `AGENTS.md` now exists, drafted by `/audit` and worth a human pass; what is still missing is the one documented check command.
 **Done when:** a root `AGENTS.md` describes the real structure, the naming and the code style of the page, the stylesheet and the script, and one documented command checks all three without errors.
 - [ ] Capture standards & tooling: `/audit`
 
 ## Slice 1: forms that really send
 
-### 2. Booking request delivery · in-progress
-Booking is the whole point of the page, and today the form only pretends to work. Send each request to the café through the chosen form service, and let the guest see the truth about what happened. spec [0001](../specs/0001-deliver-booking-requests-through-web3forms.md) · code in `index.html`, `script.js`, `styles.css`
+### 2. Booking request delivery · done
+Booking is the whole point of the page, and the form used to only pretend to work. Each request now goes to the café through the chosen form service, and the guest sees the truth about what happened. spec [0001](../specs/0001-deliver-booking-requests-through-web3forms.md) · code in `index.html`, `script.js`, `styles.css`
 **Done when:** a submitted request really arrives at the café's chosen destination with the guest's details, the guest reads a success message only after a real send, a failed send shows an honest message with a way to retry, and the form states what those details are used for.
 - [x] Design it (spec): `/architect booking request delivery`
 - [x] Build it: `/develop booking request delivery`
   - [x] The form posts to Web3Forms from its own markup, with the payload made honest (AC-5, AC-6, AC-10)
     - [x] The script sends for real and reports the three honest states, keeping the guest's details on failure (AC-1, AC-2, AC-3, AC-4, AC-7, AC-11)
     - [x] Bot trap, the purpose line, and the three states styled from tokens (AC-1, AC-2, AC-3, AC-4, AC-8, AC-9)
-- [x] Verify it: `/check verify booking request delivery` — 22/22 local checks pass against the real `index.html`, `script.js` and `styles.css` (evidence in spec §Verification). The live end-to-end send to the Web3Forms service is blocked in this environment (no browser here to do a JavaScript-off POST, outbound HTTPS to `api.web3forms.com` is unreachable, and the access key is still the placeholder), so the Done when condition "really arrives" stays pending the café's key paste — exactly the Follow-up the spec already calls out.
+- [x] Verify it: `/check verify booking request delivery` — 22/22 local checks pass against the real `index.html`, `script.js` and `styles.css` (evidence in spec §Verification). The live end-to-end send to the Web3Forms service is blocked in this environment (no browser here to do a JavaScript-off POST, outbound HTTPS to `api.web3forms.com` is unreachable, and the access key is still the placeholder), so the Done when condition "really arrives" stays pending the café's key paste — exactly the Follow-up the spec already calls out. **Closed 2026-09-16:** the café's real access key is pasted into the marked value in `index.html` and the café confirmed a live send arrives, so the last Done when condition holds and the feature is called done.
 
 ### 3. Newsletter signup delivery · needs a decision
 The monthly Cat mail signup should really add a subscriber, with the same honesty about the outcome.

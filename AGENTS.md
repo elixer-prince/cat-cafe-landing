@@ -41,7 +41,7 @@ Stored in `docs/specs/`. Format: `docs/specs/NNNN-title.md`.
 - Put new CSS in the matching numbered section of `styles.css` (1 design tokens through 18 motion and print). Base rules live in the numbered block, responsive overrides belong in the `@media` blocks of sections 17 and 18.
 - Sections and ids are the contract: one `<section>` per page area (`#cats`, `#menu`, `#gallery`, `#why`, `#reviews`, `#book`, with `#visit` an anchor inside the booking section), the navigation and footer links target those ids, and neighbouring sections alternate `class="section"` and `class="section section-alt"` for the tinted background. Class names are kebab case (`.site-header`, `.card-grid`) and state classes take the `is-` prefix (`.is-open`, `.is-visible`).
 - Accessibility is house style, not a later pass: skip link, a text label on every icon button (inline SVG icons are `aria-hidden`), `role="status"` for form messages, visible focus rings, and `prefers-reduced-motion` honoured.
-- There is no backend. The booking and newsletter forms are front end demos that print a friendly confirmation; features 2 and 3 in `docs/scope/scope.md` make them real, so never write code or copy that implies details are sent before then.
+- There is no backend. The booking form really sends through Web3Forms from its own markup and reports the honest outcome (feature 2, spec 0001); the newsletter signup is still a front end demo that prints a friendly confirmation until feature 3 makes it real, so never write code or copy that implies its details are sent before then.
 - Copy is hand written British English in a warm, playful voice, written straight into the HTML.
 
 ## Agent skills
